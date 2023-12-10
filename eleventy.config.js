@@ -1,4 +1,7 @@
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("assets");
+
   return {
     // Pre-process *.md files with: (default: `liquid`)
     markdownTemplateEngine: "njk",
