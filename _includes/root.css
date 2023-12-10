@@ -3,11 +3,13 @@
     --color-accent: #179A72;
     --color-primary: #2C3131;
     --color-secondary: #919191;
+    --color-tertiary: #CECECE;
 }
 
 html, body {
     padding: 0;
     margin: 0;
+    background: var(--color-white);
 }
 
 @font-face {
