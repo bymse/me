@@ -34,3 +34,7 @@
 .section__header_number {
   grid-area: number;
 }
+
+.section__content {
+  padding: 24px 12px 60px;
+}

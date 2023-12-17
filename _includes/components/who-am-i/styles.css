@@ -1,0 +1,39 @@
+.whoami {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "image image image image"
+        "name name name name"
+        "sign sign sign ."
+        ". description description description";
+
+    font-size: 16px;
+    font-family: 'SourceCodePro';
+    line-height: 24px;
+}
+
+.whoami__image {
+    grid-area: image;
+}
+
+.whoami__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.whoami__name {
+    margin-top: 20px;
+    grid-area: name;
+    font-size: 32px;
+    font-family: 'SourceCodePro';
+    font-weight: 700;
+    line-height: 40px;
+}
+
+.whoami__sign {
+    grid-area: sign;
+}
+
+.whoami__description {
+    grid-area: description;
+}
