@@ -1,0 +1,21 @@
+#interests-map {
+    width: 100%;
+    overflow: auto;
+}
+
+.nodes circle {
+    fill: var(--color-white);
+}
+
+.nodes text {
+    fill: var(--color-primary);
+    text-anchor: middle;
+    alignment-baseline: middle;
+    font-family: "SourceCodePro";
+    font-weight: 800;
+}
+
+.links {
+    stroke: var(--color-white);
+    stroke-width: 1px;
+}
