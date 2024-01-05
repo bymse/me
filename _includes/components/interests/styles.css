@@ -1,21 +1,28 @@
 #interests-map {
     width: 100%;
-    overflow: auto;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
-.nodes circle {
-    fill: var(--color-white);
-}
-
-.nodes text {
-    fill: var(--color-primary);
-    text-anchor: middle;
-    alignment-baseline: middle;
+.nodes .circle {
+    background-color: var(--color-white);
+    height: 100%;
+    border-radius: 100%;
+    font-family: "SourceCodePro";
+    color: var(--color-primary);
     font-family: "SourceCodePro";
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .links {
     stroke: var(--color-white);
-    stroke-width: 1px;
+    stroke-width: 2px;
 }

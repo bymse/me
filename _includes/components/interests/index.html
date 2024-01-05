@@ -10,26 +10,22 @@
         </svg>
     </div>
     <script>
-        const map = document.getElementById("interests-map");
-        const { width } = map.getBoundingClientRect();
-        const height = 600;
-        const defaultRadius = 100;
-
-        const svg = document.querySelector("#interests-map svg");
-
-        const root = d3
-            .select("#interests-map svg")
-            .attr("width", width)
-            .attr("height", height);
-
         const data = {
             nodes: [
-                { title: "Programming", size: "100" },
-                { title: ".NET", size: "90" },
-                { title: "ASP.NET Core", size: "70" },
-                { title: "Blazor", size: "40" },
-                { title: "Razor", size: "40" },
-                { title: "SignalR", size: "40" },
+                { title: "Programming", size: 9, vertical: 5, horizontal: 3 },
+                { title: ".NET", size: 8, vertical: 4, horizontal: 3 },
+                { title: "ASP.NET Core", size: 5, vertical: 2, horizontal: 3 },
+                { title: "Blazor", size: 4, vertical: 2, horizontal: 5 },
+                { title: "Razor", size: 4, vertical: 2, horizontal: 1 },
+                { title: "SignalR", size: 4, vertical: 2, horizontal: 4 },
+                { title: "Frontend", size: 7, vertical: 6, horizontal: 3 },
+                { title: "React", size: 5, vertical: 7, horizontal: 1 },
+                { title: "HTML/CSS", size: 5, vertical: 7, horizontal: 2 },
+                { title: "Next.js", size: 5, vertical: 7, horizontal: 4 },
+                { title: "DevOps", size: 9, vertical: 5, horizontal: 8 },
+                { title: "GitLab CI/CD", size: 5, vertical: 4, horizontal: 7 },
+                { title: "Docker", size: 5, vertical: 6, horizontal: 8 },
+                { title: "Reverse Proxy", size: 5, vertical: 7, horizontal: 9 },
             ],
             links: [
                 {
@@ -52,60 +48,122 @@
                     source: "SignalR",
                     target: "ASP.NET Core",
                 },
+                {
+                    source: "Frontend",
+                    target: "Programming",
+                },
+                {
+                    source: "React",
+                    target: "Frontend",
+                },
+                {
+                    source: "HTML/CSS",
+                    target: "Frontend",
+                },
+                {
+                    source: "Next.js",
+                    target: "Frontend",
+                },
+                {
+                    source: "GitLab CI/CD",
+                    target: "DevOps",
+                },
+                {
+                    source: "Docker",
+                    target: "DevOps",
+                },
+                {
+                    source: "Reverse Proxy",
+                    target: "DevOps",
+                },
             ],
         };
 
+        const NODE_DEFAULT_RADIUS = 90;
+        const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
+        const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.2;
+        const HEIGHT = 600;
+        const MAX_WIDTH = 1200;
+
+        const nodesInColumn = Math.ceil(
+            HEIGHT / (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
+        );
+        const columns = Math.ceil(data.nodes.length / nodesInColumn);
+        const minWidth =
+            columns *
+            (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2 + BORDER_MARGIN * 2);
+
+        const map = document.getElementById("interests-map");
+        const { width: rectWidth } = map.getBoundingClientRect();
+
+
+        const width = Math.min(MAX_WIDTH, Math.max(minWidth, rectWidth));
+        
+
+        const root = d3
+            .select("#interests-map svg")
+            .attr("width", width)
+            .attr("height", HEIGHT);
+
         const calculateRadius = (size, radius) => {
-            const percents = size / 100;
+            const percents = size / 10;
             return radius * percents;
         };
 
+        const yScale = d3.scaleLinear().domain([1, 10]).range([0, HEIGHT]);
+        const xScale = d3.scaleLinear().domain([1, 10]).range([0, width]);
+
         const simulation = d3
             .forceSimulation(data.nodes)
-            .force("charge", d3.forceManyBody().strength(1))
-            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force(
+                "y",
+                d3.forceY().y((d) => yScale(d.vertical))
+            )
+            .force(
+                "x",
+                d3.forceX().x((d) => xScale(d.horizontal))
+            )
             .force(
                 "collision",
                 d3
                     .forceCollide()
-                    .radius((d) => calculateRadius(d.size, defaultRadius + 20))
+                    .radius((d) =>
+                        calculateRadius(
+                            d.size,
+                            NODE_DEFAULT_RADIUS + NODE_DISTANCE
+                        )
+                    )
             )
             .force(
                 "link",
                 d3
                     .forceLink()
-                    .id((d) => d.title)
                     .links(data.links)
+                    .id((d) => d.title)
+                    .distance(NODE_DISTANCE)
             )
-            .on("tick", ticked);
+            .on("tick", () => fixBounds())
+            .on("end", onEnd);
 
-        const nodes = root
-            .select(".nodes")
-            .selectAll("g")
+        function onEnd() {
+            updateLinks();
+            updateNodes();
+        }
+
+        root.select(".nodes")
+            .selectAll("foreignObject")
             .data(data.nodes)
             .enter()
-            .append("g");
+            .append("foreignObject")
+            .append("xhtml:div")
+            .attr("class", "circle")
+            .text((d) => d.title);
 
-        nodes
-            .append("circle")
-            .attr("r", (d) => calculateRadius(d.size, defaultRadius));
-
-        nodes.append("text").text((d) => d.title);
-
-        const links = root
-            .select(".links")
+        root.select(".links")
             .selectAll("line")
             .data(data.links)
             .enter()
             .append("line");
-
-        function updateNodes() {
-            root.select(".nodes")
-                .selectAll("g")
-                .attr("transform", function (d) {
-                    return "translate(" + d.x + "," + d.y + ")";
-                });
-        }
 
         function updateLinks() {
             root.select(".links")
@@ -116,15 +174,52 @@
                 .attr("y2", (d) => d.target.y);
         }
 
-        function resizeSvg() {
-            const bbox = svg.getBBox();
-            svg.setAttribute("width", bbox.x + bbox.width + bbox.x);
+        function updateNodes() {
+            root.select(".nodes")
+                .selectAll("foreignObject")
+                .attr("transform", function (d) {
+                    const radius = calculateRadius(d.size, NODE_DEFAULT_RADIUS);
+                    return `translate(${-radius},${-radius})`;
+                })
+                .attr("x", (d) => d.x)
+                .attr("y", (d) => d.y)
+                .attr(
+                    "width",
+                    (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
+                )
+                .attr(
+                    "height",
+                    (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
+                );
         }
 
-        function ticked() {
-            updateNodes();
-            updateLinks();
-            resizeSvg();
+        function fixBounds() {
+            const graphNodes = simulation.nodes();
+
+            graphNodes.forEach((node) => {
+                const radius =
+                    calculateRadius(node.size, NODE_DEFAULT_RADIUS) +
+                    BORDER_MARGIN;
+                if (node.x - radius < 0) {
+                    node.x = radius;
+                    node.vx = 0;
+                }
+
+                if (node.y - radius < 0) {
+                    node.y = radius;
+                    node.vy = 0;
+                }
+
+                if (width && node.x + radius > width) {
+                    node.x = width - radius;
+                    node.vx = 0;
+                }
+
+                if (HEIGHT && node.y + radius > HEIGHT) {
+                    node.y = HEIGHT - radius;
+                    node.yx = 0;
+                }
+            });
         }
     </script>
 </section>
