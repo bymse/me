@@ -1,7 +1,7 @@
 <nav class="top-nav">
     <ul class="nav-list">
-        <li>
-            <a href="#who_am_i">
+        <li class="nav-list_active">
+            <a href="#who_am_i" data-nav-link>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -27,8 +27,8 @@
                 Who am I</a
             >
         </li>
-        <li class="nav-list_active">
-            <a href="#skills">
+        <li>
+            <a href="#skills" data-nav-link>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -52,7 +52,7 @@
             </a>
         </li>
         <li>
-            <a href="#projects">
+            <a href="#projects" data-nav-link>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -94,3 +94,33 @@
         </li>
     </ul>
 </nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navItems = document.querySelectorAll("[data-nav-link]");
+        const sections = [];
+
+        navItems.forEach((navItem) => {
+            const hash = navItem.getAttribute("href");
+            const section = document.querySelector(hash);
+            sections.push(section);
+        });
+
+        window.addEventListener("scroll", function () {
+            const scrollPosition = window.scrollY;
+
+            sections.forEach((section, index) => {
+                if (section.offsetTop - 48 <= scrollPosition) {
+                    navItems.forEach((navItem) => {
+                        navItem.parentElement.classList.remove(
+                            "nav-list_active"
+                        );
+                    });
+                    navItems[index].parentElement.classList.add(
+                        "nav-list_active"
+                    );
+                }
+            });
+        });
+    });
+</script>
