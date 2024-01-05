@@ -1,0 +1,40 @@
+.footer {
+    padding: 28px 12px 24px;
+    background-color: var(--color-primary);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "logo logo logo"
+        "refs refs links";
+    row-gap: 24px;
+    align-items: center;
+}
+
+.footer-logo {
+    justify-content: flex-start;
+    padding: 0;
+    grid-area: logo;
+}
+
+.footer__refs {
+    color: var(--color-white);
+    font-family: "SourceCodePro";
+    font-weight: 400;
+    line-height: 16px;
+    font-size: 12px;
+    grid-area: refs;
+}
+
+.footer__links {
+    display: flex;
+    justify-content: flex-end;
+    grid-area: links;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 20px;
+}
+
+.footer__links li a {
+    display: flex;
+}
