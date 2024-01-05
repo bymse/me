@@ -1,9 +1,9 @@
 <section class="section">
     <header class="section__header">
-        <h2 class="section__header_title">Interests</h2>
+        <h2 class="section__header_title">Skills</h2>
         <span class="section__header_number">#02</span>
     </header>
-    <div id="interests-map">
+    <div id="skills-map">
         <svg>
             <g class="links"></g>
             <g class="nodes"></g>
@@ -93,7 +93,7 @@
             columns *
             (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2 + BORDER_MARGIN * 2);
 
-        const map = document.getElementById("interests-map");
+        const map = document.getElementById("skills-map");
         const { width: rectWidth } = map.getBoundingClientRect();
 
 
@@ -101,7 +101,7 @@
         
 
         const root = d3
-            .select("#interests-map svg")
+            .select("#skills-map svg")
             .attr("width", width)
             .attr("height", HEIGHT);
 
