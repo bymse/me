@@ -19,10 +19,6 @@
     padding: 12px 8px;
     cursor: pointer;
     position: relative;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-shrink: 0;
 }
 
 .nav-list li {
@@ -38,6 +34,10 @@
 .nav-list a:visited {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .nav-list_active::after {
