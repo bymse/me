@@ -1,7 +1,7 @@
 .section {
     padding-top: 16px;
+    padding: 0 100px;
     scroll-margin-top: 46px;
-    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -64,6 +64,7 @@
     position: sticky;
     top: 48px;
     height: calc(100vh - 72px);
+    padding-bottom: 20px;
   }
 
   .section__header_title {
