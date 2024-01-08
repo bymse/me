@@ -1,4 +1,7 @@
 .projects {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
 }
 
 .project {
@@ -6,13 +9,13 @@
   font-family: "SourceCodePro";
   border-radius: 8px;
   height: 100%;
+  max-width: 360px;
 }
 
 .project__image {
   background-color: var(--color-white);
   display: flex;
   flex-direction: column;
-  height: 40%;
 }
 
 .project__image img {
@@ -80,4 +83,33 @@
     height: 20px;
     background-color: var(--color-secondary);
     border-radius: 50%;
+}
+
+.projects__show-more {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 8px 16px;
+  width: 168px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "SourceCodePro";
+  justify-self: center;
+  cursor: pointer;
+}
+
+.projects__show-more:first-child,
+.projects__show-more:nth-child(2),
+.projects__show-more:nth-child(3) {
+  display: none;
+}
+
+[data-project-card][style="display: none;"] + .projects__show-more{
+  display: block;
+}
+
+[data-project-card][style="display: block;"] + .projects__show-more{
+  display: none;
 }

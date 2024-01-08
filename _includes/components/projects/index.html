@@ -1,17 +1,18 @@
 <section class="section" id="projects">
     <header class="section__header">
-        <h2 class="section__header_title">Projects</h2>
+        <h2 class="section__header_title">My projects</h2>
         <span class="section__header_number">#03</span>
     </header>
     <div class="section__content projects">
-        <div class="project">
+        <div class="project" data-project-card>
             <div class="project__image">
-                <img src="https://placehold.co/200x130" alt="Project photo">
+                <img src="https://placehold.co/200x130" alt="Project photo" />
             </div>
             <div class="project__content">
                 <h3 class="project__title">Project name</h3>
                 <p class="project__description">
-                    A brief description of the project is written here. A brief description of the project is written here.
+                    A brief description of the project is written here. A brief
+                    description of the project is written here.
                 </p>
                 <ul class="project__tags">
                     <li class="project__tag">Tag</li>
@@ -28,5 +29,103 @@
                 </ul>
             </div>
         </div>
+        <div class="project" data-project-card>
+            <div class="project__image">
+                <img src="https://placehold.co/200x130" alt="Project photo" />
+            </div>
+            <div class="project__content">
+                <h3 class="project__title">Project name</h3>
+                <p class="project__description">
+                    A brief description of the project is written here. A brief
+                    description of the project is written here.
+                </p>
+                <ul class="project__tags">
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                </ul>
+                <ul class="project__social">
+                    <li>
+                        <a href="#" class="project__link">Network1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="project__link">Network2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="project" data-project-card>
+            <div class="project__image">
+                <img src="https://placehold.co/200x130" alt="Project photo" />
+            </div>
+            <div class="project__content">
+                <h3 class="project__title">Project name</h3>
+                <p class="project__description">
+                    A brief description of the project is written here. A brief
+                    description of the project is written here.
+                </p>
+                <ul class="project__tags">
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                </ul>
+                <ul class="project__social">
+                    <li>
+                        <a href="#" class="project__link">Network1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="project__link">Network2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="project" data-project-card>
+            <div class="project__image">
+                <img src="https://placehold.co/200x130" alt="Project photo" />
+            </div>
+            <div class="project__content">
+                <h3 class="project__title">Project name</h3>
+                <p class="project__description">
+                    A brief description of the project is written here. A brief
+                    description of the project is written here.
+                </p>
+                <ul class="project__tags">
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                    <li class="project__tag">Tag</li>
+                </ul>
+                <ul class="project__social">
+                    <li>
+                        <a href="#" class="project__link">Network1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="project__link">Network2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="projects__show-more" id="projectsShowMore">
+            Show more
+        </button>
     </div>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const projectCards = document.querySelectorAll("[data-project-card]");
+        const showMore = document.getElementById("projectsShowMore");
+
+        if (projectCards.length > 2) {
+            projectCards.forEach((card, index) => {
+                if (index > 1) {
+                    card.style.display = "none";
+                }
+            });
+
+            showMore.addEventListener("click", (e) => {
+                projectCards.forEach((card) => {
+                    card.style.display = "block";
+                });
+            });
+        }
+    });
+</script>
