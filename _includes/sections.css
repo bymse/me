@@ -1,6 +1,10 @@
 .section {
     padding-top: 16px;
     scroll-margin-top: 46px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .section:nth-child(even) {
@@ -38,4 +42,37 @@
 
 .section__content {
   padding: 24px 12px 60px;
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    flex-direction: row;
+    padding-top: 0;
+  }
+
+  .section:nth-child(even) .section__header,
+  .section__header {
+    grid-template-areas: 
+    "title"
+    "number";
+    font-size: 32px;
+    line-height: 40px;
+    border-bottom: none;
+    border-right: 1px solid var(--color-secondary);
+    padding-top: 20px;
+
+    position: sticky;
+    top: 48px;
+    height: calc(100vh - 72px);
+  }
+
+  .section__header_title {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    align-self: start;
+  }
+
+  .section__header_number {
+    align-self: end;
+  }
 }
