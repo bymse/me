@@ -1,4 +1,4 @@
-<section class="section" id="projects">
+<section class="section projects-wrapper" id="projects">
     <header class="section__header">
         <h2 class="section__header_title">My projects</h2>
         <span class="section__header_number">#03</span>
@@ -115,12 +115,6 @@
         const showMore = document.getElementById("projectsShowMore");
 
         if (projectCards.length > 2) {
-            projectCards.forEach((card, index) => {
-                if (index > 1) {
-                    card.style.display = "none";
-                }
-            });
-
             showMore.addEventListener("click", (e) => {
                 projectCards.forEach((card) => {
                     card.style.display = "block";
