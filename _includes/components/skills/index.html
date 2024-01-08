@@ -10,216 +10,251 @@
         </svg>
     </div>
     <script>
-        const data = {
-            nodes: [
-                { title: "Programming", size: 9, vertical: 5, horizontal: 3 },
-                { title: ".NET", size: 8, vertical: 4, horizontal: 3 },
-                { title: "ASP.NET Core", size: 5, vertical: 2, horizontal: 3 },
-                { title: "Blazor", size: 4, vertical: 2, horizontal: 5 },
-                { title: "Razor", size: 4, vertical: 2, horizontal: 1 },
-                { title: "SignalR", size: 4, vertical: 2, horizontal: 4 },
-                { title: "Frontend", size: 7, vertical: 6, horizontal: 3 },
-                { title: "React", size: 5, vertical: 7, horizontal: 1 },
-                { title: "HTML/CSS", size: 5, vertical: 7, horizontal: 2 },
-                { title: "Next.js", size: 5, vertical: 7, horizontal: 4 },
-                { title: "DevOps", size: 9, vertical: 5, horizontal: 8 },
-                { title: "GitLab CI/CD", size: 5, vertical: 4, horizontal: 7 },
-                { title: "Docker", size: 5, vertical: 6, horizontal: 8 },
-                { title: "Reverse Proxy", size: 5, vertical: 7, horizontal: 9 },
-            ],
-            links: [
-                {
-                    source: ".NET",
-                    target: "Programming",
-                },
-                {
-                    source: "ASP.NET Core",
-                    target: ".NET",
-                },
-                {
-                    source: "Blazor",
-                    target: "ASP.NET Core",
-                },
-                {
-                    source: "Razor",
-                    target: "ASP.NET Core",
-                },
-                {
-                    source: "SignalR",
-                    target: "ASP.NET Core",
-                },
-                {
-                    source: "Frontend",
-                    target: "Programming",
-                },
-                {
-                    source: "React",
-                    target: "Frontend",
-                },
-                {
-                    source: "HTML/CSS",
-                    target: "Frontend",
-                },
-                {
-                    source: "Next.js",
-                    target: "Frontend",
-                },
-                {
-                    source: "GitLab CI/CD",
-                    target: "DevOps",
-                },
-                {
-                    source: "Docker",
-                    target: "DevOps",
-                },
-                {
-                    source: "Reverse Proxy",
-                    target: "DevOps",
-                },
-            ],
-        };
+        document.addEventListener("DOMContentLoaded", drawSkillsMap);
 
-        const NODE_DEFAULT_RADIUS = 90;
-        const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
-        const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.2;
-        const HEIGHT = 600;
-        const MAX_WIDTH = 1200;
+        function drawSkillsMap() {
+            const data = {
+                nodes: [
+                    {
+                        title: "Programming",
+                        size: 9,
+                        vertical: 5,
+                        horizontal: 3,
+                    },
+                    { title: ".NET", size: 8, vertical: 4, horizontal: 3 },
+                    {
+                        title: "ASP.NET Core",
+                        size: 5,
+                        vertical: 2,
+                        horizontal: 3,
+                    },
+                    { title: "Blazor", size: 4, vertical: 2, horizontal: 5 },
+                    { title: "Razor", size: 4, vertical: 2, horizontal: 1 },
+                    { title: "SignalR", size: 4, vertical: 2, horizontal: 4 },
+                    { title: "Frontend", size: 7, vertical: 6, horizontal: 3 },
+                    { title: "React", size: 5, vertical: 7, horizontal: 1 },
+                    { title: "HTML/CSS", size: 5, vertical: 7, horizontal: 2 },
+                    { title: "Next.js", size: 5, vertical: 7, horizontal: 4 },
+                    { title: "DevOps", size: 9, vertical: 5, horizontal: 8 },
+                    {
+                        title: "GitLab CI/CD",
+                        size: 5,
+                        vertical: 4,
+                        horizontal: 7,
+                    },
+                    { title: "Docker", size: 5, vertical: 6, horizontal: 8 },
+                    {
+                        title: "Reverse Proxy",
+                        size: 5,
+                        vertical: 7,
+                        horizontal: 9,
+                    },
+                ],
+                links: [
+                    {
+                        source: ".NET",
+                        target: "Programming",
+                    },
+                    {
+                        source: "ASP.NET Core",
+                        target: ".NET",
+                    },
+                    {
+                        source: "Blazor",
+                        target: "ASP.NET Core",
+                    },
+                    {
+                        source: "Razor",
+                        target: "ASP.NET Core",
+                    },
+                    {
+                        source: "SignalR",
+                        target: "ASP.NET Core",
+                    },
+                    {
+                        source: "Frontend",
+                        target: "Programming",
+                    },
+                    {
+                        source: "React",
+                        target: "Frontend",
+                    },
+                    {
+                        source: "HTML/CSS",
+                        target: "Frontend",
+                    },
+                    {
+                        source: "Next.js",
+                        target: "Frontend",
+                    },
+                    {
+                        source: "GitLab CI/CD",
+                        target: "DevOps",
+                    },
+                    {
+                        source: "Docker",
+                        target: "DevOps",
+                    },
+                    {
+                        source: "Reverse Proxy",
+                        target: "DevOps",
+                    },
+                ],
+            };
 
-        const nodesInColumn = Math.ceil(
-            HEIGHT / (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
-        );
-        const columns = Math.ceil(data.nodes.length / nodesInColumn);
-        const minWidth =
-            columns *
-            (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2 + BORDER_MARGIN * 2);
+            const NODE_DEFAULT_RADIUS = 90;
+            const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
+            const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.2;
+            const MAX_HEIGHT = 800;
+            const MAX_WIDTH = 1200;
 
-        const map = document.getElementById("skills-map");
-        const { width: rectWidth } = map.getBoundingClientRect();
+            const viewportHeight = Math.max(
+                document.documentElement.clientHeight || 0,
+                window.innerHeight || 0
+            );
 
+            const height = Math.min(MAX_HEIGHT, viewportHeight - 48);
 
-        const width = Math.min(MAX_WIDTH, Math.max(minWidth, rectWidth));
-        
+            const nodesInColumn = Math.ceil(
+                height /
+                    (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
+            );
+            const columns = Math.ceil(data.nodes.length / nodesInColumn);
+            const minWidth =
+                columns *
+                (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2 + BORDER_MARGIN * 2);
 
-        const root = d3
-            .select("#skills-map svg")
-            .attr("width", width)
-            .attr("height", HEIGHT);
+            const { width: rectWidth } = document.getElementById("skills-map").getBoundingClientRect();
 
-        const calculateRadius = (size, radius) => {
-            const percents = size / 10;
-            return radius * percents;
-        };
+            const width = Math.min(
+                MAX_WIDTH,
+                Math.max(minWidth, rectWidth - 12)
+            );
 
-        const yScale = d3.scaleLinear().domain([1, 10]).range([0, HEIGHT]);
-        const xScale = d3.scaleLinear().domain([1, 10]).range([0, width]);
+            const root = d3
+                .select("#skills-map svg")
+                .attr("width", width)
+                .attr("height", height);
 
-        const simulation = d3
-            .forceSimulation(data.nodes)
-            .force(
-                "y",
-                d3.forceY().y((d) => yScale(d.vertical))
-            )
-            .force(
-                "x",
-                d3.forceX().x((d) => xScale(d.horizontal))
-            )
-            .force(
-                "collision",
-                d3
-                    .forceCollide()
-                    .radius((d) =>
-                        calculateRadius(
-                            d.size,
-                            NODE_DEFAULT_RADIUS + NODE_DISTANCE
+            const calculateRadius = (size, radius) => {
+                const percents = size / 10;
+                return radius * percents;
+            };
+
+            const yScale = d3.scaleLinear().domain([1, 10]).range([0, height]);
+            const xScale = d3.scaleLinear().domain([1, 10]).range([0, width]);
+
+            const simulation = d3
+                .forceSimulation(data.nodes)
+                .force(
+                    "y",
+                    d3.forceY().y((d) => yScale(d.vertical))
+                )
+                .force(
+                    "x",
+                    d3.forceX().x((d) => xScale(d.horizontal))
+                )
+                .force(
+                    "collision",
+                    d3
+                        .forceCollide()
+                        .radius((d) =>
+                            calculateRadius(
+                                d.size,
+                                NODE_DEFAULT_RADIUS + NODE_DISTANCE
+                            )
                         )
-                    )
-            )
-            .force(
-                "link",
-                d3
-                    .forceLink()
-                    .links(data.links)
-                    .id((d) => d.title)
-                    .distance(NODE_DISTANCE)
-            )
-            .on("tick", () => fixBounds())
-            .on("end", onEnd);
+                )
+                .force(
+                    "link",
+                    d3
+                        .forceLink()
+                        .links(data.links)
+                        .id((d) => d.title)
+                        .distance(NODE_DISTANCE)
+                )
+                .on("tick", () => fixBounds())
+                .on("end", onEnd);
 
-        function onEnd() {
-            updateLinks();
-            updateNodes();
-        }
+            function onEnd() {
+                updateLinks();
+                updateNodes();
+            }
 
-        root.select(".nodes")
-            .selectAll("foreignObject")
-            .data(data.nodes)
-            .enter()
-            .append("foreignObject")
-            .append("xhtml:div")
-            .attr("class", "circle")
-            .text((d) => d.title);
-
-        root.select(".links")
-            .selectAll("line")
-            .data(data.links)
-            .enter()
-            .append("line");
-
-        function updateLinks() {
-            root.select(".links")
-                .selectAll("line")
-                .attr("x1", (d) => d.source.x)
-                .attr("y1", (d) => d.source.y)
-                .attr("x2", (d) => d.target.x)
-                .attr("y2", (d) => d.target.y);
-        }
-
-        function updateNodes() {
             root.select(".nodes")
                 .selectAll("foreignObject")
-                .attr("transform", function (d) {
-                    const radius = calculateRadius(d.size, NODE_DEFAULT_RADIUS);
-                    return `translate(${-radius},${-radius})`;
-                })
-                .attr("x", (d) => d.x)
-                .attr("y", (d) => d.y)
-                .attr(
-                    "width",
-                    (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
-                )
-                .attr(
-                    "height",
-                    (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
-                );
-        }
+                .data(data.nodes)
+                .enter()
+                .append("foreignObject")
+                .append("xhtml:div")
+                .attr("class", "circle")
+                .text((d) => d.title);
 
-        function fixBounds() {
-            const graphNodes = simulation.nodes();
+            root.select(".links")
+                .selectAll("line")
+                .data(data.links)
+                .enter()
+                .append("line");
 
-            graphNodes.forEach((node) => {
-                const radius =
-                    calculateRadius(node.size, NODE_DEFAULT_RADIUS) +
-                    BORDER_MARGIN;
-                if (node.x - radius < 0) {
-                    node.x = radius;
-                    node.vx = 0;
-                }
+            function updateLinks() {
+                root.select(".links")
+                    .selectAll("line")
+                    .attr("x1", (d) => d.source.x)
+                    .attr("y1", (d) => d.source.y)
+                    .attr("x2", (d) => d.target.x)
+                    .attr("y2", (d) => d.target.y);
+            }
 
-                if (node.y - radius < 0) {
-                    node.y = radius;
-                    node.vy = 0;
-                }
+            function updateNodes() {
+                root.select(".nodes")
+                    .selectAll("foreignObject")
+                    .attr("transform", function (d) {
+                        const radius = calculateRadius(
+                            d.size,
+                            NODE_DEFAULT_RADIUS
+                        );
+                        return `translate(${-radius},${-radius})`;
+                    })
+                    .attr("x", (d) => d.x)
+                    .attr("y", (d) => d.y)
+                    .attr(
+                        "width",
+                        (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
+                    )
+                    .attr(
+                        "height",
+                        (d) => calculateRadius(d.size, NODE_DEFAULT_RADIUS) * 2
+                    );
+            }
 
-                if (width && node.x + radius > width) {
-                    node.x = width - radius;
-                    node.vx = 0;
-                }
+            function fixBounds() {
+                const graphNodes = simulation.nodes();
 
-                if (HEIGHT && node.y + radius > HEIGHT) {
-                    node.y = HEIGHT - radius;
-                    node.yx = 0;
-                }
-            });
+                graphNodes.forEach((node) => {
+                    const radius =
+                        calculateRadius(node.size, NODE_DEFAULT_RADIUS) +
+                        BORDER_MARGIN;
+                    if (node.x - radius < 0) {
+                        node.x = radius;
+                        node.vx = 0;
+                    }
+
+                    if (node.y - radius < 0) {
+                        node.y = radius;
+                        node.vy = 0;
+                    }
+
+                    if (width && node.x + radius > width) {
+                        node.x = width - radius;
+                        node.vx = 0;
+                    }
+
+                    if (height && node.y + radius > height) {
+                        node.y = height - radius;
+                        node.yx = 0;
+                    }
+                });
+            }
         }
     </script>
 </section>
