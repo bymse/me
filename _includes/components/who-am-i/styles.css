@@ -15,10 +15,12 @@
 .whoami__image {
     grid-area: image;
     border-radius: 8px;
+    max-width: 100%;
+    justify-self: center;
 }
 
 .whoami__image img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
 }
