@@ -13,98 +13,11 @@
         document.addEventListener("DOMContentLoaded", drawSkillsMap);
 
         function drawSkillsMap() {
-            const data = {
-                nodes: [
-                    {
-                        title: "Programming",
-                        size: 9,
-                        vertical: 5,
-                        horizontal: 3,
-                    },
-                    { title: ".NET", size: 8, vertical: 4, horizontal: 3 },
-                    {
-                        title: "ASP.NET Core",
-                        size: 5,
-                        vertical: 2,
-                        horizontal: 3,
-                    },
-                    { title: "Blazor", size: 4, vertical: 2, horizontal: 5 },
-                    { title: "Razor", size: 4, vertical: 2, horizontal: 1 },
-                    { title: "SignalR", size: 4, vertical: 2, horizontal: 4 },
-                    { title: "Frontend", size: 7, vertical: 6, horizontal: 3 },
-                    { title: "React", size: 5, vertical: 7, horizontal: 1 },
-                    { title: "HTML/CSS", size: 5, vertical: 7, horizontal: 2 },
-                    { title: "Next.js", size: 5, vertical: 7, horizontal: 4 },
-                    { title: "DevOps", size: 9, vertical: 5, horizontal: 8 },
-                    {
-                        title: "GitLab CI/CD",
-                        size: 5,
-                        vertical: 4,
-                        horizontal: 7,
-                    },
-                    { title: "Docker", size: 5, vertical: 6, horizontal: 8 },
-                    {
-                        title: "Reverse Proxy",
-                        size: 5,
-                        vertical: 7,
-                        horizontal: 9,
-                    },
-                ],
-                links: [
-                    {
-                        source: ".NET",
-                        target: "Programming",
-                    },
-                    {
-                        source: "ASP.NET Core",
-                        target: ".NET",
-                    },
-                    {
-                        source: "Blazor",
-                        target: "ASP.NET Core",
-                    },
-                    {
-                        source: "Razor",
-                        target: "ASP.NET Core",
-                    },
-                    {
-                        source: "SignalR",
-                        target: "ASP.NET Core",
-                    },
-                    {
-                        source: "Frontend",
-                        target: "Programming",
-                    },
-                    {
-                        source: "React",
-                        target: "Frontend",
-                    },
-                    {
-                        source: "HTML/CSS",
-                        target: "Frontend",
-                    },
-                    {
-                        source: "Next.js",
-                        target: "Frontend",
-                    },
-                    {
-                        source: "GitLab CI/CD",
-                        target: "DevOps",
-                    },
-                    {
-                        source: "Docker",
-                        target: "DevOps",
-                    },
-                    {
-                        source: "Reverse Proxy",
-                        target: "DevOps",
-                    },
-                ],
-            };
+            const data = {{ skills | jsonify | safe}};
 
             const NODE_DEFAULT_RADIUS = 90;
             const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
-            const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.2;
+            const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.3;
             const MAX_HEIGHT = 800;
             const MAX_WIDTH = 1200;
 
@@ -120,9 +33,7 @@
                     (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
             );
             const columns = Math.ceil(data.nodes.length / nodesInColumn);
-            const minWidth =
-                columns *
-                (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2 + BORDER_MARGIN * 2);
+            const minWidth = columns * (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2) + BORDER_MARGIN * 2;
 
             const { width: rectWidth } = document.getElementById("skills-map").getBoundingClientRect();
 

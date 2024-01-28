@@ -1,7 +1,78 @@
 {
-    "whoAmI" : {
+    "whoAmI": {
         "name": "Strelov Egor",
-        "sign" : "Jack of all trades",
-        "description" : "Hi there! I am a software developer with a focus on web applications. I have an experience leading small team of developers. In my spare time, I work on pet projects and enjoy reading technical books. Apart from that, I like doing  sports such as indoor climbing and badminton."
+        "sign": "Jack of all trades",
+        "description": "Hi there! I am a software developer with a focus on web applications. I have an experience leading small team of developers. In my spare time, I work on pet projects and enjoy reading technical books. Apart from that, I like doing  sports such as indoor climbing and badminton."
+    },
+    "skills": {
+        "nodes": [
+            { "title": "Programming", "size": 9, "vertical": 5, "horizontal": 3 },
+            
+            { "title": ".NET", "size": 8, "vertical": 3, "horizontal": 4 },
+            { "title": "EF Core", "size": 5, "vertical": 2, "horizontal": 5 },
+
+            { "title": "ASP.NET Core", "size": 5, "vertical": 2, "horizontal": 3 },
+            { "title": "Blazor", "size": 4, "vertical": 2, "horizontal": 2 },
+            { "title": "MVC", "size": 4, "vertical": 1, "horizontal": 1 },
+            { "title": "AuthN", "size": 4, "vertical": 1, "horizontal": 3 },
+            { "title": "AuthZ", "size": 4, "vertical": 2, "horizontal": 4 },
+
+            { "title": "Frontend", "size": 7, "vertical": 7, "horizontal": 2 },
+            { "title": "React", "size": 5, "vertical": 8, "horizontal": 1 },
+            { "title": "Redux", "size": 4, "vertical": 9, "horizontal": 2 },
+            { "title": "HTML/CSS", "size": 5, "vertical": 8, "horizontal": 2 },
+            { "title": "Next.js", "size": 4, "vertical": 8, "horizontal": 2 },
+            { "title": "Type Script", "size": 5, "vertical": 9, "horizontal": 4 },
+
+            { "title": "Python", "size": 6, "vertical": 7, "horizontal": 5 },
+            { "title": "FastAPI", "size": 4, "vertical": 8, "horizontal": 6 },
+
+            { "title": "Storage", "size": 7, "vertical": 4, "horizontal": 7 },
+            { "title": "Postgres", "size": 6, "vertical": 5, "horizontal": 7 },
+            { "title": "Redis", "size": 5, "vertical": 5, "horizontal": 8 },
+
+            { "title": "Software Design", "size": 7, "vertical": 8, "horizontal": 8 },
+            { "title": "DDD", "size": 5, "vertical": 8, "horizontal": 8 },
+            { "title": "SOLID", "size": 5, "vertical": 9, "horizontal": 9 },
+            { "title": "Microservices", "size": 7, "vertical": 9, "horizontal": 9 },
+
+            { "title": "DevOps", "size": 8, "vertical": 2, "horizontal": 8 },
+            { "title": "GitLab CI/CD", "size": 5, "vertical": 2, "horizontal": 7 },
+            { "title": "GitHub Actions", "size": 5, "vertical": 2, "horizontal": 7 },
+            { "title": "Docker", "size": 5, "vertical": 1, "horizontal": 8 },
+            { "title": "K8s", "size": 5, "vertical": 1, "horizontal": 9 }
+        ],
+        "links": [
+            { "source": ".NET", "target": "Programming" },
+            { "source": "EF Core", "target": ".NET" },
+
+            { "source": "ASP.NET Core", "target": ".NET" },
+            { "source": "Blazor", "target": "ASP.NET Core" },
+            { "source": "MVC", "target": "ASP.NET Core" },
+            { "source": "AuthN", "target": "ASP.NET Core" },
+            { "source": "AuthZ", "target": "ASP.NET Core" },
+
+            { "source": "Python", "target": "Programming" },
+            { "source": "FastAPI", "target": "Python" },
+
+            { "source": "Frontend", "target": "Programming" },
+            { "source": "React", "target": "Frontend" },
+            { "source": "HTML/CSS", "target": "Frontend" },
+            { "source": "Next.js", "target": "Frontend" },
+            { "source": "Redux", "target": "Frontend" },
+            { "source": "Type Script", "target": "Frontend" },
+
+            { "source": "Postgres", "target": "Storage" },
+            { "source": "Redis", "target": "Storage" },
+
+            { "source": "DDD", "target": "Software Design" },
+            { "source": "SOLID", "target": "Software Design" },
+            { "source": "Microservices", "target": "Software Design" },
+
+            { "source": "GitLab CI/CD", "target": "DevOps" },
+            { "source": "Docker", "target": "DevOps" },
+            { "source": "GitHub Actions", "target": "DevOps" },
+            { "source": "K8s", "target": "DevOps" }
+        ]
     }
 }

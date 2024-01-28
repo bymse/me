@@ -2,6 +2,10 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
 
+  eleventyConfig.addFilter("jsonify", function (variable) {
+    return JSON.stringify(variable);
+  });
+
   return {
     // Pre-process *.md files with: (default: `liquid`)
     markdownTemplateEngine: "njk",
