@@ -2,7 +2,36 @@
     "whoAmI": {
         "name": "Strelov Egor",
         "sign": "Jack of all trades",
-        "description": "Hi there! I am a software developer with a focus on web applications. I have an experience leading small team of developers. In my spare time, I work on pet projects and enjoy reading technical books. Apart from that, I like doing  sports such as indoor climbing and badminton."
+        "description": "Hi there! I am a software developer with 4+ years of experience in web applications. I am leading leading small team of developers. In my spare time, I work on pet projects and enjoy reading technical books. Apart from that, I like doing  sports such as indoor climbing and badminton."
+    },
+    "projects": [
+        {
+            "image": "/assets/bymseread.webp",
+            "url" : "https://github.com/bymse/BymseRead",
+            "title": "BymseRead",
+            "description" : "Desktop application for reading and management of PDF books",
+            "tags": ["C#", "Blazor", "Desktop"],
+            "links" : [
+                { "title": "GitHub", "url": "https://github.com/bymse/BymseRead" },
+                { "title": "Releases", "url": "https://github.com/bymse/BymseRead/releases" }
+            ]
+        },
+        {
+            "image": "/assets/blink-connect.webp",
+            "title": "blink.connect",
+            "url" : "https://github.com/bymse/blink",
+            "description" : "Simple web tool that enables you to open URLs from one device on another",
+            "tags": ["Python", "FastAPI", "Next.js"],
+            "links" : [
+                { "title": "Website", "url": "https://c.bymse.me" },
+                { "title": "GitHub", "url": "https://github.com/bymse/blink" }
+            ]
+        }
+    ],
+    "footer": {
+        "designLink": "https://www.behance.net/vladdislava",
+        "github" : "https://github.com/bymse",
+        "linkedin" : "https://www.linkedin.com/in/egor-strelov-23b207227/"
     },
     "skills": {
         "nodes": [
@@ -25,7 +54,7 @@
             { "title": "Type Script", "size": 5, "vertical": 9, "horizontal": 4 },
 
             { "title": "Python", "size": 6, "vertical": 7, "horizontal": 5 },
-            { "title": "FastAPI", "size": 4, "vertical": 8, "horizontal": 6 },
+            { "title": "FastAPI", "size": 5, "vertical": 8, "horizontal": 6 },
 
             { "title": "Storage", "size": 7, "vertical": 4, "horizontal": 7 },
             { "title": "Postgres", "size": 6, "vertical": 5, "horizontal": 7 },

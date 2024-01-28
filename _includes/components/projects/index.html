@@ -5,106 +5,38 @@
     </header>
     <div class="section__content projects__container">
         <div class="projects">
+            {%- for project in projects -%}
             <div class="project" data-project-card>
                 <div class="project__image">
-                    <img src="https://raw.githubusercontent.com/bymse/BymseRead/main/readme-img/grid.png" alt="Project photo" />
+                    <a target="_blank" href="{{ project.url }}" rel="noopener noreferrer nofollow">
+                        <img
+                            src="{{ project.image }}"
+                            alt="Photo of {{ project.title }}"
+                        />
+                    </a>
                 </div>
                 <div class="project__content">
-                    <h3 class="project__title">Project name</h3>
+                    <h3 class="project__title">{{ project.title }}</h3>
                     <p class="project__description">
-                        A brief description of the project is written here. A
-                        brief description of the project is written here.
+                        {{ project.description }}
                     </p>
                     <ul class="project__tags">
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
+                        {%- for tag in project.tags -%}
+                        <li class="project__tag">{{ tag }}</li>
+                        {%- endfor -%}
                     </ul>
-                    <ul class="project__social">
+                    <ul class="project__links">
+                        {%- for link in project.links -%}
                         <li>
-                            <a href="#" class="project__link">Network1</a>
+                            <a href="{{ link.url }}" class="project__link" rel="noopener noreferrer nofollow">
+                                {{ link.title }}
+                            </a>
                         </li>
-                        <li>
-                            <a href="#" class="project__link">Network2</a>
-                        </li>
+                        {%- endfor -%}
                     </ul>
                 </div>
             </div>
-            <div class="project" data-project-card>
-                <div class="project__image">
-                    <img src="https://placehold.co/400x300" alt="Project photo" />
-                </div>
-                <div class="project__content">
-                    <h3 class="project__title">Project name</h3>
-                    <p class="project__description">
-                        A brief description of the project is written here. A
-                        brief description of the project is written here.
-                    </p>
-                    <ul class="project__tags">
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                    </ul>
-                    <ul class="project__social">
-                        <li>
-                            <a href="#" class="project__link">Network1</a>
-                        </li>
-                        <li>
-                            <a href="#" class="project__link">Network2</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="project" data-project-card>
-                <div class="project__image">
-                    <img src="https://placehold.co/400x300" alt="Project photo" />
-                </div>
-                <div class="project__content">
-                    <h3 class="project__title">Project name</h3>
-                    <p class="project__description">
-                        A brief description of the project is written here. A
-                        brief description of the project is written here.
-                    </p>
-                    <ul class="project__tags">
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                    </ul>
-                    <ul class="project__social">
-                        <li>
-                            <a href="#" class="project__link">Network1</a>
-                        </li>
-                        <li>
-                            <a href="#" class="project__link">Network2</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="project" data-project-card>
-                <div class="project__image">
-                    <img src="https://placehold.co/500x300" alt="Project photo" />
-                </div>
-                <div class="project__content">
-                    <h3 class="project__title">Project name</h3>
-                    <p class="project__description">
-                        A brief description of the project is written here. A
-                        brief description of the project is written here.
-                    </p>
-                    <ul class="project__tags">
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                        <li class="project__tag">Tag</li>
-                    </ul>
-                    <ul class="project__social">
-                        <li>
-                            <a href="#" class="project__link">Network1</a>
-                        </li>
-                        <li>
-                            <a href="#" class="project__link">Network2</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {%- endfor -%}
             <button class="projects__show-more" id="projectsShowMore">
                 Show more
             </button>

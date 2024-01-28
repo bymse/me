@@ -38,6 +38,7 @@
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     max-width: 100%;
+    max-height: 280px;
 }
 
 .project__content {
@@ -78,7 +79,7 @@
     border-radius: 12px;
 }
 
-.project__social {
+.project__links {
     display: flex;
     flex-direction: row;
     padding: 0;
@@ -95,6 +96,10 @@
     margin: 0;
     padding: 0;
     display: flex;
+}
+
+.project__link:hover {
+    text-decoration: underline;
 }
 
 .project__link::before {
