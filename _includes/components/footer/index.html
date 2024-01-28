@@ -1,15 +1,19 @@
 <div class="footer">
     <div class="logo footer-logo">bymse</div>
-    <div class="footer__refs">©2024 Bymse, all rights reserved</div>
+    <div class="footer__refs">
+        ©2024 Bymse. Designed by
+        <a class="footer__refs_design" href="{{ footer.designLink }}" target="_blank" rel="noopener noreferrer">Vladislava Kozlovskaya
+        </a>
+    </div>
     <ul class="footer__links">
         <li>
-            <a href="/">
-                <img src="https://placehold.co/30x30" alt="Project photo">
+            <a href="{{ footer.github }}" target="_blank" rel="noopener noreferrer nofollow">
+                <img src="/assets/github-mark-white.svg" alt="Project photo" />
             </a>
         </li>
         <li>
-            <a href="/">
-                <img src="https://placehold.co/30x30" alt="Project photo">
+            <a href="{{ footer.linkedin }}" target="_blank" rel="noopener noreferrer nofollow">
+                <img src="/assets/linkedin.png" alt="Project photo" />
             </a>
         </li>
     </ul>

@@ -35,8 +35,17 @@
     gap: 20px;
 }
 
+.footer__links img {
+    width: 24px;
+    height: 24px;
+}
+
 .footer__links li a {
     display: flex;
+}
+
+.footer__refs_design {
+    color: var(--color-white);
 }
 
 @media only screen and (min-width: 768px) { 
@@ -57,5 +66,10 @@
 
     .footer__links {
         padding-right: 12px;
+    }
+
+    .footer__links img {
+        width: 36px;
+        height: 36px;
     }
 }
