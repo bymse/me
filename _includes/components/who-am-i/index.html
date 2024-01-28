@@ -3,18 +3,16 @@
         <h2 class="section__header_title">Who am I</h2>
         <span class="section__header_number">#01</span>
     </header>
-    <div class="section__content whoami">
-        <div class="whoami__image">
-            <img src="https://placehold.co/350x250" alt="Egor's photo">
+    <div class="section__content whoami__container">
+        <div class="whoami">
+            <div class="whoami__image">
+                <img src="/assets/me.webp" alt="Photo of {{ whoAmI.name }}" />
+            </div>
+            <div class="whoami__text-container">
+                <div class="whoami__name">{{ whoAmI.name }}</div>
+                <div class="whoami__sign">{{ whoAmI.sign }}</div>
+                <p class="whoami__description">{{ whoAmI.description }}</p>
+            </div>
         </div>
-        <div class="whoami__name">
-            Strelov Egor
-        </div>
-        <div class="whoami__sign">
-            web-developer i prosto horoshiy chelovek
-        </div>
-        <p class="whoami__description">
-            Dive into a world where pixels party, CSS is the life of the layout, and JavaScript makes websites dance – because who said web development couldn't be both stylish and fun? 
-        </p>
     </div>
 </section>
