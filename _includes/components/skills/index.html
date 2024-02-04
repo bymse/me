@@ -10,42 +10,44 @@
         </svg>
     </div>
     <script>
+        const data = {{ skills | jsonify | safe}};
+
+        const NODE_DEFAULT_RADIUS = 90;
+        const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
+        const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.3;
+        const MAX_HEIGHT = 800;
+        const MAX_WIDTH = 1200;
+
+        const viewportHeight = Math.max(
+            document.documentElement.clientHeight || 0,
+            window.innerHeight || 0
+        );
+
+        const height = Math.min(MAX_HEIGHT, viewportHeight - 48);
+
+        const nodesInColumn = Math.ceil(
+            height /
+                (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
+        );
+        const columns = Math.ceil(data.nodes.length / nodesInColumn);
+        const minWidth = columns * (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2) + BORDER_MARGIN * 2;
+
+        const skillsMap = document.getElementById("skills-map");
+        const { width: rectWidth } = skillsMap.getBoundingClientRect();
+
+        const width = Math.min(
+            MAX_WIDTH,
+            Math.max(minWidth, rectWidth - 12)
+        );
+
+        skillsMap.querySelector("svg").setAttribute("width", width);
+        skillsMap.querySelector("svg").setAttribute("height", height);
+
         document.addEventListener("DOMContentLoaded", drawSkillsMap);
 
         function drawSkillsMap() {
-            const data = {{ skills | jsonify | safe}};
 
-            const NODE_DEFAULT_RADIUS = 90;
-            const BORDER_MARGIN = NODE_DEFAULT_RADIUS * 0.1;
-            const NODE_DISTANCE = NODE_DEFAULT_RADIUS * 0.3;
-            const MAX_HEIGHT = 800;
-            const MAX_WIDTH = 1200;
-
-            const viewportHeight = Math.max(
-                document.documentElement.clientHeight || 0,
-                window.innerHeight || 0
-            );
-
-            const height = Math.min(MAX_HEIGHT, viewportHeight - 48);
-
-            const nodesInColumn = Math.ceil(
-                height /
-                    (NODE_DEFAULT_RADIUS + NODE_DISTANCE + BORDER_MARGIN * 2)
-            );
-            const columns = Math.ceil(data.nodes.length / nodesInColumn);
-            const minWidth = columns * (NODE_DEFAULT_RADIUS + NODE_DISTANCE * 2) + BORDER_MARGIN * 2;
-
-            const { width: rectWidth } = document.getElementById("skills-map").getBoundingClientRect();
-
-            const width = Math.min(
-                MAX_WIDTH,
-                Math.max(minWidth, rectWidth - 12)
-            );
-
-            const root = d3
-                .select("#skills-map svg")
-                .attr("width", width)
-                .attr("height", height);
+            const root = d3.select("#skills-map svg");
 
             const calculateRadius = (size, radius) => {
                 const percents = size / 10;
