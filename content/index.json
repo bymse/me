@@ -19,7 +19,7 @@
         {
             "image": "/assets/blink-connect.webp",
             "title": "blink.connect",
-            "url" : "https://github.com/bymse/blink",
+            "url" : "https://c.bymse.me",
             "description" : "Simple web tool that enables you to open URLs from one device on another",
             "tags": ["Python", "FastAPI", "Next.js"],
             "links" : [
