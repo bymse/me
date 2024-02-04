@@ -11,9 +11,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
+    "@11ty/eleventy": "^2.0.1",
+    "clean-css": "^5.3.3"
   },
-  "prettier" : {
+  "prettier": {
     "tabWidth": 4
   }
 }
