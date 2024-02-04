@@ -71,7 +71,7 @@
 }
 
 .project__tags li {
-    background-color: var(--color-secondary);
+    background-color: var(--color-tertiary);
     color: var(--color-primary);
     font-size: 14px;
     line-height: 20px;
@@ -84,7 +84,7 @@
     flex-direction: row;
     padding: 0;
     list-style: none;
-    gap: 16px;
+    gap: 24px;
     margin: 0;
 }
 
@@ -96,6 +96,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
 }
 
 .project__link:hover {
@@ -104,10 +105,10 @@
 
 .project__link::before {
     content: "";
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-    background-color: var(--color-secondary);
+    margin-right: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
     border-radius: 50%;
 }
 
@@ -174,6 +175,10 @@
         .projects__show-more {
             width: 488px;
             grid-column: span 20;
+        }
+
+        .project__links {
+            gap: 16px;
         }
     }
 
