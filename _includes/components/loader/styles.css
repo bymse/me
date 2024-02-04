@@ -4,6 +4,12 @@
     height: 100%;
 }
 
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s .5s, opacity .5s linear;
+}
+
 .shape-a {
     width: 200px;
     height: 200px;

@@ -44,7 +44,7 @@
         skillsMap.querySelector("svg").setAttribute("width", width);
         skillsMap.querySelector("svg").setAttribute("height", height);
 
-        //document.addEventListener("DOMContentLoaded", drawSkillsMap);
+        document.addEventListener("DOMContentLoaded", drawSkillsMap);
 
         function drawSkillsMap() {
 
@@ -91,8 +91,11 @@
                 .on("end", onEnd);
 
             function onEnd() {
-                updateLinks();
-                updateNodes();
+                document.querySelector(".loader").classList.add("hidden");
+                setTimeout(() => {
+                    updateLinks();
+                    updateNodes();
+                }, 300);
             }
 
             root.select(".nodes")
