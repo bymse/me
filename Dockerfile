@@ -15,6 +15,6 @@ FROM nginx:latest
 
 COPY --from=builder /app/_site /usr/share/nginx/html
 
-EXPOSE 5000
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
