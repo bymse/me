@@ -11,7 +11,7 @@
             <div class="whoami__text-container">
                 <div class="whoami__name">{{ whoAmI.name }}</div>
                 <div class="whoami__sign">{{ whoAmI.sign }}</div>
-                <p class="whoami__description">{{ whoAmI.description }}</p>
+                <p class="whoami__description">{{ whoAmI.description | safe }}</p>
             </div>
         </div>
     </div>
